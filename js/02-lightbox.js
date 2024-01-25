@@ -6,6 +6,8 @@ console.log(galleryItems);
 const picturesContainer = document.querySelector(`.gallery`);
 
 const galleryMarkup = galleryItems.map((image) => {
+  const li = document.createElement("li");
+
   const link = document.createElement(`a`);
   link.className = `gallery__item`;
   link.href = image.original;
@@ -17,8 +19,9 @@ const galleryMarkup = galleryItems.map((image) => {
   imgElement.dataset.source = image.original;
 
   link.appendChild(imgElement);
+  li.appendChild(link);
 
-  return link;
+  return li;
 });
 
 picturesContainer.append(...galleryMarkup);
