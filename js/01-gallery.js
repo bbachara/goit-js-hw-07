@@ -26,7 +26,7 @@ const galleryMarkup = galleryItems.map((image) => {
 
 picturesContainer.append(...galleryMarkup);
 
-// event listener to each div - first option
+// first option - forEach
 // galleryMarkup.forEach((div) => {
 //   div.addEventListener("click", (event) => {
 //     event.preventDefault();
@@ -52,7 +52,7 @@ picturesContainer.append(...galleryMarkup);
 //   });
 // });
 
-// event listener to each div - second option
+// second option - .map
 const lightboxInstances = galleryMarkup.map((div) => {
   const instance = basicLightbox.create(
     `
