@@ -27,54 +27,54 @@ const galleryMarkup = galleryItems.map((image) => {
 picturesContainer.append(...galleryMarkup);
 
 // first option - forEach
-// galleryMarkup.forEach((div) => {
-//   div.addEventListener("click", (event) => {
-//     event.preventDefault();
-
-//     const instance = basicLightbox.create(
-//       `
-//         <img src="${div.querySelector("img").dataset.source}" alt="${
-//         div.querySelector("img").alt
-//       }">
-//       `,
-//       {
-//         onShow: (instance) => {
-//           document.addEventListener("keydown", (e) => {
-//             if (e.key === "Escape") {
-//               instance.close();
-//             }
-//           });
-//         },
-//       }
-//     );
-
-//     instance.show();
-//   });
-// });
-
-// second option - .map
-const lightboxInstances = galleryMarkup.map((div) => {
-  const instance = basicLightbox.create(
-    `
-      <img src="${div.querySelector("img").dataset.source}" alt="${
-      div.querySelector("img").alt
-    }">
-    `,
-    {
-      onShow: (instance) => {
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") {
-            instance.close();
-          }
-        });
-      },
-    }
-  );
-
+galleryMarkup.forEach((div) => {
   div.addEventListener("click", (event) => {
     event.preventDefault();
+
+    const instance = basicLightbox.create(
+      `
+        <img src="${div.querySelector("img").dataset.source}" alt="${
+        div.querySelector("img").alt
+      }">
+      `,
+      {
+        onShow: (instance) => {
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+              instance.close();
+            }
+          });
+        },
+      }
+    );
+
     instance.show();
   });
-
-  return instance;
 });
+
+// second option - .map
+// const lightboxInstances = galleryMarkup.map((div) => {
+//   const instance = basicLightbox.create(
+//     `
+//       <img src="${div.querySelector("img").dataset.source}" alt="${
+//       div.querySelector("img").alt
+//     }">
+//     `,
+//     {
+//       onShow: (instance) => {
+//         document.addEventListener("keydown", (e) => {
+//           if (e.key === "Escape") {
+//             instance.close();
+//           }
+//         });
+//       },
+//     }
+//   );
+
+//   div.addEventListener("click", (event) => {
+//     event.preventDefault();
+//     instance.show();
+//   });
+
+//   return instance;
+// });
