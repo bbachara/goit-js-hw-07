@@ -6,12 +6,12 @@ console.log(galleryItems);
 const picturesContainer = document.querySelector(`.gallery`);
 
 const galleryMarkup = galleryItems.map((image) => {
-  const div = document.createElement(`div`);
-  div.className = `gallery__item`;
+  const divGallery = document.createElement(`div`);
+  divGallery.className = `gallery__item`;
 
-  const link = document.createElement(`a`);
-  link.className = `gallery__link`;
-  link.href = image.original;
+  const linkImg = document.createElement(`a`);
+  linkImg.className = `gallery__link`;
+  linkImg.href = image.original;
 
   const imgElement = document.createElement(`img`);
   imgElement.className = `gallery__image`;
@@ -19,9 +19,9 @@ const galleryMarkup = galleryItems.map((image) => {
   imgElement.alt = image.description;
   imgElement.dataset.source = image.original;
 
-  link.appendChild(imgElement);
-  div.appendChild(link);
-  return div;
+  linkImg.appendChild(imgElement);
+  divGallery.appendChild(linkImg);
+  return divGallery;
 });
 
 picturesContainer.append(...galleryMarkup);
@@ -53,7 +53,7 @@ galleryMarkup.forEach((div) => {
 });
 
 // second option - .map
-// const lightboxInstances = galleryMarkup.map((div) => {
+// galleryMarkup.map((div) => {
 //   const instance = basicLightbox.create(
 //     `
 //       <img src="${div.querySelector("img").dataset.source}" alt="${

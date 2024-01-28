@@ -6,11 +6,11 @@ console.log(galleryItems);
 const picturesContainer = document.querySelector(`.gallery`);
 
 const galleryMarkup = galleryItems.map((image) => {
-  const li = document.createElement("li");
+  const liElement = document.createElement("li");
 
-  const link = document.createElement(`a`);
-  link.className = `gallery__item`;
-  link.href = image.original;
+  const linkImg = document.createElement(`a`);
+  linkImg.className = `gallery__item`;
+  linkImg.href = image.original;
 
   const imgElement = document.createElement(`img`);
   imgElement.className = `gallery__image`;
@@ -18,10 +18,10 @@ const galleryMarkup = galleryItems.map((image) => {
   imgElement.alt = image.description;
   imgElement.dataset.source = image.original;
 
-  link.appendChild(imgElement);
-  li.appendChild(link);
+  linkImg.appendChild(imgElement);
+  liElement.appendChild(linkImg);
 
-  return li;
+  return liElement;
 });
 
 picturesContainer.append(...galleryMarkup);
