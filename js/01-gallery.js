@@ -26,55 +26,28 @@ const galleryMarkup = galleryItems.map((image) => {
 
 picturesContainer.append(...galleryMarkup);
 
-// first option - forEach
-galleryMarkup.forEach((div) => {
-  div.addEventListener("click", (event) => {
-    event.preventDefault();
+picturesContainer.addEventListener("click", (event) => {
+  event.preventDefault();
 
-    const instance = basicLightbox.create(
-      `
-        <img src="${div.querySelector("img").dataset.source}" alt="${
-        div.querySelector("img").alt
-      }">
-      `,
-      {
-        onShow: (instance) => {
-          document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") {
-              instance.close();
-            }
-          });
-        },
-      }
-    );
+  const source = event.target.dataset.source;
+  const description = event.target.alt;
 
-    instance.show();
-  });
+  const instance = basicLightbox.create(
+    `<img src="${source}" alt="${description}">`,
+    {
+      onShow: (instance) => {
+        document.addEventListener("keydown", onKeyPress);
+      },
+      onClose: (instance) => {
+        document.removeEventListener("keydown", onKeyPress);
+      },
+    }
+  );
+  instance.show();
+
+  function onKeyPress(event) {
+    if (event.key === "Escape") {
+      instance.close();
+    }
+  }
 });
-
-// second option - .map
-// galleryMarkup.map((div) => {
-//   const instance = basicLightbox.create(
-//     `
-//       <img src="${div.querySelector("img").dataset.source}" alt="${
-//       div.querySelector("img").alt
-//     }">
-//     `,
-//     {
-//       onShow: (instance) => {
-//         document.addEventListener("keydown", (e) => {
-//           if (e.key === "Escape") {
-//             instance.close();
-//           }
-//         });
-//       },
-//     }
-//   );
-
-//   div.addEventListener("click", (event) => {
-//     event.preventDefault();
-//     instance.show();
-//   });
-
-//   return instance;
-// });
